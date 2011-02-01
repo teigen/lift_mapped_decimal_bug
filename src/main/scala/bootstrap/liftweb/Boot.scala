@@ -20,12 +20,14 @@ object Database extends StandardDBVendor("org.h2.Driver", "jdbc:h2:mem:demo;DB_C
 class Demo extends LongKeyedMapper[Demo] with IdPK {
   def getSingleton = Demo
   object decimal extends MappedDecimal(this, BigDecimal(0))
+  object int extends MappedInt(this)
+  object long extends MappedLong(this)
 }
 
 object Demo extends Demo with LongKeyedMetaMapper[Demo] with CRUDify[Long, Demo]{
   override def pageWrapper(body:NodeSeq) =
     <lift:surround with="default" at="content">
-      try writing something thats NOT a number (even an empty field will do)
+      try writing something thats NOT a number in the decimal field (even submitting the field empty will do)
       {body}
     </lift:surround>
 }

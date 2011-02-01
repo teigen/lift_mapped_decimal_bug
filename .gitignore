@@ -1,0 +1,6 @@
+lib
+lib_managed
+target
+.idea
+*.iml
+project/boot
